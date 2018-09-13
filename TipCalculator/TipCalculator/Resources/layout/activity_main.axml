@@ -27,6 +27,7 @@
 				android:id="@+id/subTotalText" />
 			<EditText
 				android:layout_width="150dp"
+				android:text=""
 				android:layout_height="match_parent"
 				android:id="@+id/subTotalValue"/>
 		</LinearLayout>

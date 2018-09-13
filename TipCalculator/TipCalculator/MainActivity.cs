@@ -26,15 +26,43 @@ namespace TipCalculator
             totalValue = FindViewById<TextView>(Resource.Id.totalValue);
 
             seekBar.ProgressChanged += SeekBar_ProgressChanged;
+            subTotalValue.TextChanged += SubTotalValue_TextChanged;
+            
+        }
 
-            var calculateTip = 0;
-            var calculateTotal = 0;
+        private void SubTotalValue_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            CalculateTip();
         }
 
         private void SeekBar_ProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
             tipPercent.Text = e.Progress.ToString();
+            CalculateTip();
             return;
+        }
+
+        /// <summary>
+        /// Subtotal = x;
+        /// tipPercent = tipPercent.Text;
+        /// 
+        /// Find TipAmount
+        /// TipAmount = subtotal 100%
+        ///                x     TipPercent
+        /// </summary>
+        private void CalculateTip()
+        {
+            var tipPercentCalced = 0;
+            var tipAmount = 0;
+
+            if (tipAmount == 0)
+            {
+                tipAmount = int.Parse(subTotalValue.Text) - tipPercentCalced;
+
+                tipPercentCalced = int.Parse(subTotalValue.Text) / 100 * int.Parse(tipPercent.Text);
+                tipAmount = int.Parse(tipAmountValue.ToString());
+
+            }
         }
     }
 }
